@@ -13,8 +13,13 @@ hpc_table$Date <- dmy(hpc_table$Date)
 
 # Filter two days
 hpc_2007 <- filter(hpc_table, (hpc_table$Date >= as.Date("2007-2-1") & hpc_table$Date <= as.Date("2007-2-2")))
+head(hpc_2007)
+str(hpc_2007)
+
+str(as.POSIXct(paste(hpc_2007$Date, hpc_2007$Time), format="%Y-%m-%d %A %H:%M:%S"))
+hpc_2007$Date <- as.POSIXct(paste(hpc_2007$Date, hpc_2007$Time), format="%Y-%m-%d %H:%M:%S ")
 
 # Plot histogram and create png
-hist(as.numeric(hpc_2007$Global_active_power), col = "red", breaks = 12, main = "Global Active Power", xlab = "GlobalActive Power (kilowats)" )
-dev.copy(png, file = "plot1.png")
+plot(hpc_2007$Global_active_power ~ hpc_2007$Date, type = "l", xlab = "", ylab = "GlobalActive Power (kilowats)")
+dev.copy(png, file = "plot2.png")
 dev.off()

@@ -15,6 +15,6 @@ hpc_table$Date <- dmy(hpc_table$Date)
 hpc_2007 <- filter(hpc_table, (hpc_table$Date >= as.Date("2007-2-1") & hpc_table$Date <= as.Date("2007-2-2")))
 
 # Plot histogram and create png
+png("plot1.png", width = 480, height = 480, units = "px")
 hist(as.numeric(hpc_2007$Global_active_power), col = "red", breaks = 12, main = "Global Active Power", xlab = "GlobalActive Power (kilowats)" )
-dev.copy(png, file = "plot1.png")
 dev.off()

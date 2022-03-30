@@ -19,7 +19,15 @@ str(hpc_2007)
 str(as.POSIXct(paste(hpc_2007$Date, hpc_2007$Time), format="%Y-%m-%d %A %H:%M:%S"))
 hpc_2007$Date <- as.POSIXct(paste(hpc_2007$Date, hpc_2007$Time), format="%Y-%m-%d %H:%M:%S ")
 
-# Plot histogram and create png
-png("plot2.png", width = 480, height = 480, units = "px")
-plot(hpc_2007$Global_active_power ~ hpc_2007$Date, type = "l", xlab = "", ylab = "GlobalActive Power (kilowats)")
+# Ploting plot3
+png("plot3.png", width = 480, height = 480, units = "px")
+plot(hpc_2007$Sub_metering_1 ~ hpc_2007$Date, type = "l", xlab = "", col = "black", ylab = "Energy Sub metering")
+lines(hpc_2007$Sub_metering_2 ~ hpc_2007$Date, type = "l", xlab = "", col = "red")
+lines(hpc_2007$Sub_metering_3 ~ hpc_2007$Date, type = "l", xlab = "", col = "blue")
+legend("topright", legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), col = c("black", "red", "blue"), lty=1:1, cex = 1)
+
 dev.off()
+
+# Reference
+# Plot multiple plots in one graph
+# http://www.countbio.com/web_pages/left_object/R_for_biology/R_fundamentals/multiple_curves_R.html
